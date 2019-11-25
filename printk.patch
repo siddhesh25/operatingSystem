@@ -1,0 +1,22 @@
+--- socketorig.c	2019-09-24 12:18:53.873518713 -0400
++++ socket.c	2019-09-24 01:45:59.740610559 -0400
+@@ -1554,7 +1554,9 @@
+ 	struct socket *sock, *newsock;
+ 	struct file *newfile;
+ 	int err, len, newfd, fput_needed;
+-	struct sockaddr_storage address;	
++	struct sockaddr_storage address;
++	
++	printk("***************************** INSIDE ACCEPT FUNCTION ************************************\n");	
+ 
+ 	if (flags & ~(SOCK_CLOEXEC | SOCK_NONBLOCK))
+ 		return -EINVAL;
+@@ -1658,6 +1660,8 @@
+ 	struct socket *sock;
+ 	struct sockaddr_storage address;
+ 	int err, fput_needed;
++	
++	printk("**************************************INSIDE CONNECT ***********************************\n");
+ 
+ 	sock = sockfd_lookup_light(fd, &err, &fput_needed);
+ 	if (!sock)
